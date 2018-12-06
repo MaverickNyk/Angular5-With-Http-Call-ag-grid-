@@ -11,9 +11,9 @@ import {Http} from '@angular/http';
 })
 export class GridComponentComponent implements OnInit {
 
-  private today = new Date();
-  private response;
-  private gridOptions =<GridOptions>{
+  gridApi:any;
+  columnApi:any;
+  gridOptions =<GridOptions>{
   animateRows: true,
   enableSorting: true,
   suppressDragLeaveHidesColumns :true,
@@ -45,29 +45,24 @@ export class GridComponentComponent implements OnInit {
       },
   
     ];
-    this.gridOptions.rowData =[{
-      "env": "ARM07",
-      "branch": "DevMain",
-      "buildNumber": "LAST=446"
-      }];
+         }
 
-
-      
-
-   }
+   OnGridReady(params){
+    this.gridApi=params.api;
+    this.columnApi = params.columnApi;
+  }
 
   ngOnInit() {
     
     this.service.getbuildInfo().subscribe(
-      (response:any) =>{
-        this.gridOptions.rowData =[{
-          "env": "ARM07",
-          "branch": "DevMain",
-          "buildNumber": "LAST=446"
-          }];
-        console.log( this.gridOptions.rowData );
-    });
+      data =>{
+
+        this.gridApi.setRowData([]);
+        var newData=Array.from(data.json());
+        this.gridApi.updateRowData({add:newData});
+    })
     
   }
+
 
 }

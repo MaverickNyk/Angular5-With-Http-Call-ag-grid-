@@ -11,7 +11,7 @@ export class GridService {
         console.log("entered here");
         let headers = new Headers();
         headers.append('content-type', 'application/json');
-        return this.http.get('http://localhost:8080/api/javainuse');
+        return this.http.get('http://localhost:8080/api/buildInfo');
      
     }
 }

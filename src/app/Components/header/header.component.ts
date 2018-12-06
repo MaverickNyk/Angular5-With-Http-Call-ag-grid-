@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  private title = null;
+   title = null;
   private date = null;
 
   constructor() { }
